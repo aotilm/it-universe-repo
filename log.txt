@@ -1,0 +1,37 @@
+commit ddd6be3d70d3acdd6012ad152ce0476ecc96bd27 (HEAD -> aotilm-new-feature)
+Author: aotilm <aotilm@gmail.com>
+Date:   Fri May 2 21:09:20 2025 +0300
+
+    Revert "Update readme.md"
+    
+    This reverts commit 4cace413be7f4d7613aa4a01358172543b2ae17a.
+
+commit 4cace413be7f4d7613aa4a01358172543b2ae17a
+Author: aotilm <aotilm@gmail.com>
+Date:   Fri May 2 21:08:08 2025 +0300
+
+    Update readme.md
+
+commit 99b216fc1d8a81695db35373e46740034242062a (origin/aotilm-new-feature)
+Author: aotilm <aotilm@gmail.com>
+Date:   Fri May 2 20:46:41 2025 +0300
+
+    new feature branch, changed readme
+
+commit 640508189151b4bba1223ae010b440c90068d5fb (origin/dev, dev)
+Author: aotilm <aotilm@gmail.com>
+Date:   Fri May 2 20:42:54 2025 +0300
+
+    created a new dev branch and created test.txt file
+
+commit d0a428083977b6a76b0393e5d489719bbe9351d4 (origin/main, origin/HEAD, main)
+Author: aotilm <aotilm@gmail.com>
+Date:   Fri May 2 20:25:55 2025 +0300
+
+    Initial commit. First task
+
+commit 120189b1b8ae7717aaeb247c1bc0aebc87873e76
+Author: aotilm <104566364+aotilm@users.noreply.github.com>
+Date:   Fri May 2 20:20:44 2025 +0300
+
+    Initial commit
