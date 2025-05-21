@@ -38,7 +38,12 @@ nano ~/.ssh/authorized_keys //копіювання публічного ключ
 ```
 * SSH зв'язок з Amazon instance до Ubuntu робиться аналогічно
 
-![alt](img/4.png)![alt](img/4.1.png)
+![alt](img/4.png)
+![alt](img/4.1.png)
+
+* Налаштування Security group, відкриття портів
+![alt](img/7.png)
+
 
 
 ## 5. Встановіть веб-сервер
