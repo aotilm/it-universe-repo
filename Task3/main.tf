@@ -1,6 +1,4 @@
-# provider "aws" {
-#   region = var.aws_region
-# }
+# НАЛАШТУВАННЯ ПРОВАЙДЕРА ВСТАНОВЛЮВАЛИСЬ ЧЕРЕЗ AWS CLI
 
 # vpc
 resource "aws_vpc" "my_vpc" {
