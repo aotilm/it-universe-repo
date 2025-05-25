@@ -1,14 +1,17 @@
 resource "aws_instance" "centos" {
+  # id образу системи
   ami = var.centos_ami
+  
+  # тип інстансу
   instance_type = var.instance_type
+
+  # в якій підмережі працює
   subnet_id = aws_subnet.private_subnet.id
-    # subnet_id = aws_subnet.public_subnet.id
 
+  # налаштування security group
   vpc_security_group_ids = [aws_security_group.centos_sg.id]
-    # vpc_security_group_ids = [aws_security_group.ubuntu_sg.id]
-
-    # associate_public_ip_address = true
-
+  
+  # привʼязка згенерованого в aws ключа доступу через ssh
   key_name = "aotilms_keypair"
 
   tags = {

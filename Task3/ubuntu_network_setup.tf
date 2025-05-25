@@ -1,8 +1,3 @@
-# Internet Gateway для Ubuntu
-resource "aws_internet_gateway" "igw" {
-  vpc_id = aws_vpc.my_vpc.id
-}
-
 # public subnet
 resource "aws_subnet" "public_subnet" {
   vpc_id = aws_vpc.my_vpc.id
@@ -24,8 +19,8 @@ resource "aws_route_table" "public_rt" {
     }
   
 }
-
-resource "aws_route_table_association" "public_assoc" {
+# привʼязка route table до підмережі
+resource "aws_route_table_association" "public_association" {
   subnet_id = aws_subnet.public_subnet.id
   route_table_id = aws_route_table.public_rt.id
 }
@@ -34,7 +29,7 @@ resource "aws_route_table_association" "public_assoc" {
 resource "aws_security_group" "ubuntu_sg" {
   name   = "ubuntu-sg"
   vpc_id = aws_vpc.my_vpc.id
-
+  # вхідний ssh
   ingress {
     from_port = 22
     to_port = 22
@@ -42,6 +37,7 @@ resource "aws_security_group" "ubuntu_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # вхідний http
   ingress {
     from_port = 80
     to_port = 80
@@ -49,6 +45,7 @@ resource "aws_security_group" "ubuntu_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # вхідний https
   ingress {
     from_port = 443
     to_port = 443
@@ -56,6 +53,7 @@ resource "aws_security_group" "ubuntu_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # дозволяється весь вхідний icmp трафік
   ingress {
     from_port = -1
     to_port = -1
@@ -63,6 +61,7 @@ resource "aws_security_group" "ubuntu_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # дозволяється весь вихідний трафік
   egress {
     from_port = 0
     to_port = 0

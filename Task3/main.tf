@@ -9,3 +9,8 @@ resource "aws_vpc" "my_vpc" {
     Name = "aotilms_vpc"
   }
 }
+
+# інтернет шлюз для доступу vpc в інтернет
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.my_vpc.id
+}
