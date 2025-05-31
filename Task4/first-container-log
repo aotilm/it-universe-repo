@@ -1,0 +1,60 @@
+ubuntu@ip-10-0-1-73:~$ sudo su
+root@ip-10-0-1-73:/home/ubuntu# systemctl stop apache2
+root@ip-10-0-1-73:/home/ubuntu# docker run -d -p 80:80 --name apacheCont httpd
+ce43e1b11a2b807cca532a0d6fe10110c3c8b7e9df11b5c64d49758ced7ca6f0
+root@ip-10-0-1-73:/home/ubuntu# docker exec -it apacheCont bash
+root@ce43e1b11a2b:/usr/local/apache2# apt update && apt install nano
+Hit:1 http://deb.debian.org/debian bookworm InRelease
+Hit:2 http://deb.debian.org/debian bookworm-updates InRelease
+Hit:3 http://deb.debian.org/debian-security bookworm-security InRelease
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+2 packages can be upgraded. Run 'apt list --upgradable' to see them.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  libgpm2 libncursesw6
+Suggested packages:
+  gpm hunspell
+The following NEW packages will be installed:
+  libgpm2 libncursesw6 nano
+0 upgraded, 3 newly installed, 0 to remove and 2 not upgraded.
+Need to get 838 kB of archives.
+After this operation, 3339 kB of additional disk space will be used.
+Do you want to continue? [Y/n] 
+Get:1 http://deb.debian.org/debian bookworm/main amd64 libncursesw6 amd64 6.4-4 [134 kB]
+Get:2 http://deb.debian.org/debian bookworm/main amd64 nano amd64 7.2-1+deb12u1 [690 kB]
+Get:3 http://deb.debian.org/debian bookworm/main amd64 libgpm2 amd64 1.20.7-10+b1 [14.2 kB]
+Fetched 838 kB in 0s (23.6 MB/s)    
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package libncursesw6:amd64.
+(Reading database ... 6791 files and directories currently installed.)
+Preparing to unpack .../libncursesw6_6.4-4_amd64.deb ...
+Unpacking libncursesw6:amd64 (6.4-4) ...
+Selecting previously unselected package nano.
+Preparing to unpack .../nano_7.2-1+deb12u1_amd64.deb ...
+Unpacking nano (7.2-1+deb12u1) ...
+Selecting previously unselected package libgpm2:amd64.
+Preparing to unpack .../libgpm2_1.20.7-10+b1_amd64.deb ...
+Unpacking libgpm2:amd64 (1.20.7-10+b1) ...
+Setting up libgpm2:amd64 (1.20.7-10+b1) ...
+Setting up libncursesw6:amd64 (6.4-4) ...
+Setting up nano (7.2-1+deb12u1) ...
+update-alternatives: using /bin/nano to provide /usr/bin/editor (editor) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/editor.1.gz because associated file /usr/share/man/man1/nano.1.gz 
+(of link group editor) doesn't exist
+update-alternatives: using /bin/nano to provide /usr/bin/pico (pico) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/pico.1.gz because associated file /usr/share/man/man1/nano.1.gz (o
+f link group pico) doesn't exist
+Processing triggers for libc-bin (2.36-9+deb12u10) ...     
+root@ce43e1b11a2b:/usr/local/apache2# ls    
+bin  build  cgi-bin  conf  error  htdocs  icons  include  logs	modules
+root@ce43e1b11a2b:/usr/local/apache2# nano htdocs/index.html 
+root@ce43e1b11a2b:/usr/local/apache2# exit
+exit
+root@ip-10-0-1-73:/home/ubuntu# docker ps -a
+CONTAINER ID   IMAGE     COMMAND              CREATED          STATUS          PORTS                                 NAMES
+ce43e1b11a2b   httpd     "httpd-foreground"   14 minutes ago   Up 14 minutes   0.0.0.0:80->80/tcp, [::]:80->80/tcp   apacheCont
+root@ip-10-0-1-73:/home/ubuntu# 

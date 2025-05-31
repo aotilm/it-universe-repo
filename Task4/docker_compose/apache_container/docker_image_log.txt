@@ -1,0 +1,36 @@
+root@ip-10-0-1-73:/home/ubuntu/apache_container# docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+root@ip-10-0-1-73:/home/ubuntu/apache_container# docker images
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+httpd         2.4       958373fdd7e8   4 months ago   148MB
+httpd         latest    958373fdd7e8   4 months ago   148MB
+hello-world   latest    74cc54e27dc4   4 months ago   10.1kB
+root@ip-10-0-1-73:/home/ubuntu/apache_container# docker build -t  aotilm/my_apache .
+[+] Building 1.0s (10/10) FINISHED                                                                                                docker:default
+ => [internal] load build definition from Dockerfile                                                                                        0.0s
+ => => transferring dockerfile: 245B                                                                                                        0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:latest                                                                            0.4s
+ => [internal] load .dockerignore                                                                                                           0.0s
+ => => transferring context: 2B                                                                                                             0.0s
+ => [1/5] FROM docker.io/library/ubuntu:latest@sha256:6015f66923d7afbc53558d7ccffd325d43b4e249f41a6e93eef074c9505d2233                      0.0s
+ => [internal] load build context                                                                                                           0.0s
+ => => transferring context: 159B                                                                                                           0.0s
+ => CACHED [2/5] RUN apt update && apt install apache2 -y                                                                                   0.0s
+ => [3/5] COPY index.html /var/www/html/index.html                                                                                          0.1s
+ => [4/5] COPY script.sh /script.sh                                                                                                         0.0s
+ => [5/5] RUN chmod +x /script.sh                                                                                                           0.2s
+ => exporting to image                                                                                                                      0.1s
+ => => exporting layers                                                                                                                     0.1s
+ => => writing image sha256:0374942d7ea0a5d19aa31ea8fb3980c38e23a474504a2f24ca06d07056f7869c                                                0.0s
+ => => naming to docker.io/aotilm/my_apache                                                                                                 0.0s
+root@ip-10-0-1-73:/home/ubuntu/apache_container# docker images
+REPOSITORY         TAG       IMAGE ID       CREATED          SIZE
+aotilm/my_apache   latest    0374942d7ea0   13 seconds ago   234MB
+httpd              2.4       958373fdd7e8   4 months ago     148MB
+httpd              latest    958373fdd7e8   4 months ago     148MB
+hello-world        latest    74cc54e27dc4   4 months ago     10.1kB
+root@ip-10-0-1-73:/home/ubuntu/apache_container# docker run -d -p 80:80  --name my_apache aotilm/my_apache
+a901d5371567ac0b2bab5edb8e6f42c39fc5284554a4cedf7cf36b4043f07f6b
+root@ip-10-0-1-73:/home/ubuntu/apache_container# docker ps -a
+CONTAINER ID   IMAGE              COMMAND        CREATED         STATUS         PORTS                                 NAMES
+a901d5371567   aotilm/my_apache   "/script.sh"   6 seconds ago   Up 6 seconds   0.0.0.0:80->80/tcp, [::]:80->80/tcp   my_apache

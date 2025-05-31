@@ -1,0 +1,41 @@
+services:
+  db:
+    # використання офіційного образу mysql
+    image: mysql
+    # container_name: mysql_cont
+    restart: always
+
+    # оголошення значень для змінних середовища
+    environment:
+      MYSQL_ROOT_PASSWORD: 1
+
+  java_cont: 
+
+    # тут вже використовується локальний образ контейнера
+    image: java_server
+    # build: ./java_container
+    # container_name: java_cont
+    
+    # вказуємо залежність від сервісу db, щоб запускався після нього
+    depends_on:
+      - db
+
+  apache:
+    # також локальний образ
+    image: aotilm/myapache
+
+    # build: ./apache_container
+
+    # проброс портів для контейнера
+    ports:
+      - "80:80"
+  
+    deploy:
+      #кількість однотипних контейнерів які запустяться
+      replicas: 3
+
+    environment:
+      DEVOPS: ${DEVOPS}
+
+
+    
